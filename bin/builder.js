@@ -1,7 +1,10 @@
 #!/usr/bin/env node
 
+var fs = require('fs');
+var version = JSON.parse(fs.readFileSync(__dirname + '/../package.json', 'utf8')).version
+
 var opt = require('optimist')
-    .usage('jQuery Builder\nUsage: $0')
+    .usage('jQuery Builder '+ version +'\nUsage: $0')
     .options('e', {
       alias: 'exclude',
       describe: 'Modules to exclude [module,module]',
