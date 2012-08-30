@@ -1,1 +1,62 @@
-My Page
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>jQuery Builder</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
+    <style>
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar">
+        <div class="navbar-inner">
+          <a class="brand" href="#">jQuery Builder</a>
+        </div>
+      </div>
+      <p>jQuery Builder lets you easily build a version a custom version of jQuery v1.8 that just includes the modules that you need.  Choose which modules you'd like to include in your custom build:</p>
+      <form>
+        <legend>Modules</legend>
+        <div class="control-group">
+          <ul></ul>
+        </div>
+        <div class="control-group">
+          <div class="controls">
+            <label class="checkbox">
+              <input type="checkbox" id="minify"/>
+              Minify
+            </label>
+            <button class="btn btn-primary">Build</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <script src="dist/jquery.min.js"></script>
+    <script src="lib/filename.js"></script>
+    <script>
+      $.get('modules.json', function(data) {
+        var el = $('ul');
+        var html = [];
+        for (var i = 0, c = data.length; i < c; i++) {
+          html.push('<li><label class="checkbox"><input type="checkbox" value="'+data[i]+'" checked>' + data[i] + '</label></li>');
+        }
+        el.html(html.join(''));
+      }, 'json');
+
+      var submit = function(e) {
+
+        var exclude = [];
+        $('ul input:not(:checked)').each(function(i, el) {
+          exclude.push($(el).val());
+        });
+
+        var minify = ($('#minify').attr('checked') == 'checked');
+
+        //TODO: save exclude, minify
+        var file = filename(exclude, minify);
+        window.open('dist/'+file);
+        e.preventDefault();
+      }
+      $('form').on('submit', submit);
+    </script>
+  </body>
+</html>
