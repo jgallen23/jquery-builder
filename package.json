@@ -1,0 +1,22 @@
+{
+  "name": "jquery-builder",
+  "version": "0.1.0",
+  "author": "Greg Allen <@jgaui> (http://jga.me)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jgallen23/jquery-builder.git"
+  },
+  "dependencies": {
+    "aug": "0.0.5",
+    "optimist": "*",
+    "combinations": "0.1.0",
+    "resistance": "*"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  },
+  "main": "./lib/builder",
+  "bin": {
+    "jquery-builder": "./bin/builder.js"
+  }
+}
