@@ -4,7 +4,7 @@ var opt = require('optimist')
     .usage('jQuery Builder\nUsage: $0')
     .options('e', {
       alias: 'exclude',
-      describe: 'Components to exclude [component,component]',
+      describe: 'Modules to exclude [module,module]',
       type: 'string'
     })
     .option('m', {
@@ -14,7 +14,7 @@ var opt = require('optimist')
     })
     .options('l', {
       alias: 'ls',
-      describe: 'List available components',
+      describe: 'List available modules',
       type: 'boolean'
     })
     .options('h', {
@@ -29,8 +29,8 @@ if (argv.help) {
 }
 
 if (argv.ls) {
-  var comp = require('../components');
-  console.log('Components:');
+  var comp = require('../modules');
+  console.log('Modules:');
   comp.forEach(function(c) {
     console.log(c);
   });
