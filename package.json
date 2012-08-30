@@ -8,9 +8,9 @@
   },
   "dependencies": {
     "aug": "0.0.5",
-    "optimist": "*",
+    "optimist": "0.3.4",
     "combinations": "0.1.0",
-    "resistance": "*"
+    "resistance": "2.0.0alpha2"
   },
   "devDependencies": {
     "mocha": "*"
