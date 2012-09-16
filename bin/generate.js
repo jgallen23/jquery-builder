@@ -29,8 +29,8 @@ var queue = resistance.queue(function(excludes, next) {
   }, function() {
     var uncompressedFile = path.join(cwd, 'dist/jquery.js');
     var compressedFile = path.join(cwd, 'dist/jquery.min.js');
-    var outfile = filename(excludes, false, true);
-    var outfileMin = filename(excludes, true, true);
+    var outfile = path.join(__dirname, '../dist', filename(excludes, false));
+    var outfileMin = path.join(__dirname, '../dist', filename(excludes, true));
     fs.renameSync(uncompressedFile, outfile);
     fs.renameSync(compressedFile, outfileMin);
     console.log('Generated ' + excludes);
@@ -38,6 +38,7 @@ var queue = resistance.queue(function(excludes, next) {
   });
 
 }, true);
+
 queue.push(combinations);
 queue.run(function(results) {
 

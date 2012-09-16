@@ -24,6 +24,11 @@ suite('filename', function() {
     assert.equal(file, 'jquery-ajax-offset.js');
   });
 
+  test('pass in multiple excludes in any order', function() {
+    var file = filename(['offset', 'ajax', 'css']);
+    assert.equal(file, 'jquery-ajax-css-offset.js');
+  });
+
   //test('pass in wrong excludes', function() {
     //assert.throws(function() {
       //filename(['poop']);
