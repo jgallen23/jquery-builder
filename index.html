@@ -179,7 +179,7 @@
         if (!currentFile) {
           update();
         }
-        _gaq.push(['_trackEvent', 'Download', 'jQuery', 'currentFile']);
+        _gaq.push(['_trackEvent', 'Download', 'jQuery', currentFile]);
         window.open('dist/'+currentFile);
         e.preventDefault();
       };
