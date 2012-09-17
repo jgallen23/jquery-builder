@@ -4,46 +4,165 @@
     <title>jQuery Builder</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
     <style>
+      h2, h3, h4 {
+        font-weight: normal;
+      }
+      .side h2 {
+        border-bottom: 1px solid #E5E5E5;
+        font-size: 24px;
+        margin-top: 15px;
+      }
+      .cli h2 {
+        margin-top: 0;
+      }
+      .build p {
+        text-align: center;
+        line-height: 38px;
+      }
+      .toggle {
+        float: right;
+      }      
+      .footer {
+        margin-top: 150px;
+        border-top: 1px solid #eee;
+        padding: 10px 0;
+        font-size: 12px;
+      }
+
+      .footer p {
+        margin: 0;
+      }
+      .footer ul {
+        float: right;
+      }
+      .footer ul li {
+        display: inline-block;
+      }
     </style>
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-24017782-2']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
   </head>
   <body>
+    <a href="https://github.com/jgallen23/jquery-builder"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
     <div class="container">
-      <div class="navbar">
-        <div class="navbar-inner">
-          <a class="brand" href="#">jQuery Builder</a>
+      <div class="row">
+        <div class="span12">
+          <h1>jQuery Builder</h1>
         </div>
       </div>
-      <p>jQuery Builder lets you easily build a custom version of jQuery v1.8 that just includes the modules that you need.  Choose which modules you'd like to include in your custom build:</p>
-      <form>
-        <legend>Modules</legend>
-        <div class="control-group">
-          <ul></ul>
+      <div class="row">
+        <div class="span8">
+          <p class="lead">jQuery Builder lets you easily build a custom version of jQuery v1.8.1 that just includes the modules you need.</p>
+          <p class="lead">Choose which modules you'd like to include in your custom build:</p>
+          <form>
+            <div class="row">
+              <div class="span4">
+                <legend>
+                  <div class="toggle">
+                    <button data-action="all" class="btn btn-mini">All</button>
+                    <button data-action="none" class="btn btn-mini">None</button>
+                  </div>
+                  Modules
+                </legend>
+                <div class="control-group">
+                  <ul data-role="modules"></ul>
+                </div>
+              </div>
+              <div class="span4">
+                <legend>Options</legend>
+                <div class="controls">
+                  <label class="checkbox">
+                    <input type="checkbox" id="minify"/>
+                    Minify
+                  </label>
+                </div>
+              </div>
+            </div>
+            <legend>Build</legend>
+            <div class="row build">
+              <div class="span1">
+                <button class="btn btn-large btn-primary">Build</button>
+              </div>
+              <div class="span1">
+                <p>or</p>
+              </div>
+              <div class="span6">
+                <pre data-role="curl">curl http://...</pre>
+              </div>
+            </div>
+          </form>
         </div>
-        <div class="control-group">
-          <div class="controls">
-            <label class="checkbox">
-              <input type="checkbox" id="minify"/>
-              Minify
-            </label>
-            <button class="btn btn-primary">Build</button>
+        <div class="side span4">
+          <div class="cli">
+            <h2>CLI</h2>
+            <p>You can also build a custom version of jQuery using the node.js cli tool.</p>
+            <h4>Install</h4>
+            <code>npm install -g jquery-builder</code>
+            <h4>Usage</h4>
+            <code>jquery-builder --exclude ajax,css -m</code>
+            <h4>Usage Options</h4>
+            <code>jquery-builder --help</code>
+          </div>
+          <div class="todo">
+            <h2>Todo</h2>
+            <ul>
+              <li>Show filesize for each module.</li>
+              <li>Choose version of jQuery.</li>
+              <li>Store selected modules in localStorage</li>
+            </ul>
           </div>
         </div>
-      </form>
+      </div>
+      <div class="footer">
+        <ul class="unstyled">
+          <li>Built With:</li>
+          <li><a href="http://twitter.github.com/bootstrap/">Bootstrap</a></li>
+          <li><a href="http://jquery.com">jQuery</a></li>
+          <li><a href="https://github.com/jgallen23/boots">Boots</a></li>
+        </ul>
+        <p>Built by: <a href="http://github.com/jgallen23">Greg Allen</a> (<a href="http://twitter.com/jgaui">@jgaui</a>)</p>
+      </div>
     </div>
-    <script src="dist/jquery-deprecated-css-dimensions-effects-offset.min.js"></script>
+    <script src="dist/jquery-css-deprecated-dimensions-effects-offset.min.js"></script>
     <script src="lib/filename.js"></script>
     <script>
+      var currentFile = '';
+
       $.get('modules.json', function(data) {
-        var el = $('ul');
+        var el = $('[data-role=modules]');
         var html = [];
         for (var i = 0, c = data.length; i < c; i++) {
           html.push('<li><label class="checkbox"><input type="checkbox" value="'+data[i]+'" checked>' + data[i] + '</label></li>');
         }
         el.html(html.join(''));
+        $('form [type=checkbox]').on('change', update);
+        update();
       }, 'json');
 
-      var submit = function(e) {
+      var toggleAll = function(e) {
+        $('[data-role=modules] [type=checkbox]').attr('checked', 'checked');
+        update();
+        e.preventDefault();
+      };
 
+      var toggleNone = function(e) {
+        $('[data-role=modules] [type=checkbox]').removeAttr('checked');
+        update();
+        e.preventDefault();
+      };
+
+      var update = function(e) {
         var exclude = [];
         $('ul input:not(:checked)').each(function(i, el) {
           exclude.push($(el).val());
@@ -52,11 +171,21 @@
         var minify = ($('#minify').attr('checked') == 'checked');
 
         //TODO: save exclude, minify
-        var file = filename(exclude, minify);
-        window.open('dist/'+file);
+        currentFile = filename(exclude, minify);
+        $('[data-role=curl]').html('curl '+window.location.href+'dist/'+currentFile+' > jquery.js');
+      };
+
+      var submit = function(e) {
+        if (!currentFile) {
+          update();
+        }
+        _gaq.push(['_trackEvent', 'Download', 'jQuery', 'currentFile']);
+        window.open('dist/'+currentFile);
         e.preventDefault();
-      }
+      };
       $('form').on('submit', submit);
+      $('[data-action=all]').on('click', toggleAll);
+      $('[data-action=none]').on('click', toggleNone);
     </script>
   </body>
 </html>
