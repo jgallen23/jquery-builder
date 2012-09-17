@@ -8,7 +8,7 @@ jQuery Builder lets you easily build a version a custom version of jQuery withou
 
 ##Usage
 
-	jQuery Builder 0.0.1
+	jQuery Builder 0.0.2
 	Usage: node ./bin/builder.js
 
 	Options:
