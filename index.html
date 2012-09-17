@@ -146,6 +146,7 @@
           html.push('<li><label class="checkbox"><input type="checkbox" value="'+data[i]+'" checked>' + data[i] + '</label></li>');
         }
         el.html(html.join(''));
+        $('[value=deprecated]').parent().append('<span>&nbsp;($.uaMatch, $.browser, $.sub)</span>');
         $('form [type=checkbox]').on('change', update);
         update();
       }, 'json');
