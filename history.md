@@ -1,4 +1,9 @@
 
+0.0.3 / 2012-09-23 
+==================
+
+  * added 1.8.2 and ability to build a specific version of jquery
+
 0.0.2 / 2012-09-17 
 ==================
 
