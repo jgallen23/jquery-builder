@@ -8,13 +8,14 @@ jQuery Builder lets you easily build a version a custom version of jQuery withou
 
 ##Usage
 
-	jQuery Builder 0.0.2
+	jQuery Builder 0.0.3
 	Usage: node ./bin/builder.js
 
 	Options:
-		-e, --exclude  Modules to exclude [module,module]  [string]
-		-m, --minify   Minify output                       [boolean]
-		-l, --ls       List available modules              [boolean]
+		-e, --exclude  Modules to exclude [module,module]              [string]
+		-m, --minify   Minify output                                   [boolean]
+		-l, --ls       List available modules                          [boolean]
+		-v, --version  Version of jQuery to use (1.8.0, 1.8.1, 1.8.2)  [string]  [default: "1.8.2"]
 
 ##Example
 
