@@ -63,7 +63,7 @@
       </div>
       <div class="row">
         <div class="span8">
-          <p class="lead">jQuery Builder lets you easily build a custom version of jQuery v1.8.1 that just includes the modules you need.</p>
+          <p class="lead">jQuery Builder lets you easily build a custom version of jQuery 1.8.* that just includes the modules you need.</p>
           <p class="lead">Choose which modules you'd like to include in your custom build:</p>
           <form>
             <div class="row">
@@ -82,9 +82,13 @@
               <div class="span4">
                 <legend>Options</legend>
                 <div class="controls">
+                  <label class="select">
+                    <p>Version:</p>
+                    <select id="version"></select>
+                  </label>
                   <label class="checkbox">
-                    <input type="checkbox" id="minify"/>
                     Minify
+                    <input type="checkbox" id="minify"/>
                   </label>
                 </div>
               </div>
@@ -118,8 +122,7 @@
             <h2>Todo</h2>
             <ul>
               <li>Show filesize for each module.</li>
-              <li>Choose version of jQuery.</li>
-              <li>Store selected modules in localStorage</li>
+              <li>Remember selected modules</li>
             </ul>
           </div>
         </div>
@@ -139,15 +142,28 @@
     <script>
       var currentFile = '';
 
-      $.get('modules.json', function(data) {
+      $.get('data.json', function(data) {
+        //modules
         var el = $('[data-role=modules]');
         var html = [];
-        for (var i = 0, c = data.length; i < c; i++) {
-          html.push('<li><label class="checkbox"><input type="checkbox" value="'+data[i]+'" checked>' + data[i] + '</label></li>');
+        var modules = data.modules;
+        for (var i = 0, c = modules.length; i < c; i++) {
+          html.push('<li><label class="checkbox"><input type="checkbox" value="'+modules[i]+'" checked>' + modules[i] + '</label></li>');
         }
         el.html(html.join(''));
         $('[value=deprecated]').parent().append('<span>&nbsp;($.uaMatch, $.browser, $.sub)</span>');
         $('form [type=checkbox]').on('change', update);
+
+        //versions
+        el = $('#version');
+        html = [];
+        var versions = data.versions;
+        for (var i = 0, c = versions.length; i < c; i++) {
+          html.push('<option value="'+versions[i]+'">'+versions[i]+'</option>');
+        }
+        el.html(html.join(''));
+        el.on('change', update);
+
         update();
       }, 'json');
 
@@ -170,9 +186,11 @@
         });
 
         var minify = ($('#minify').attr('checked') == 'checked');
+        
+        var version = $('#version').val();
 
         //TODO: save exclude, minify
-        currentFile = filename(exclude, minify);
+        currentFile = version + '/' + filename(exclude, minify);
         $('[data-role=curl]').html('curl '+window.location.href+'dist/'+currentFile+' > jquery.js');
       };
 
