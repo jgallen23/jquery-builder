@@ -1,4 +1,9 @@
 
+0.0.4 / 2012-10-05 
+==================
+
+  * Fix for error: Cannot find module '../modules' when --ls specified.
+
 0.0.3 / 2012-09-23 
 ==================
 

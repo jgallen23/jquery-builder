@@ -1,6 +1,6 @@
 {
   "name": "jquery-builder",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "Greg Allen <@jgaui> (http://jga.me)",
   "homepage": "http://projects.jga.me/jquery-builder/",
   "repository": {
@@ -17,6 +17,9 @@
     "mocha": "*"
   },
   "main": "./lib/builder",
+  "scripts": {
+    "test": "mocha"
+  },
   "bin": {
     "jquery-builder": "./bin/builder.js"
   }
