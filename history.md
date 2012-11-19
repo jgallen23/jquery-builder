@@ -1,4 +1,12 @@
 
+0.1.0 / 2012-11-19 
+==================
+
+  * default to 1.8.3, remove option for versions
+  * removed old versions and added 1.8.3 to data.json
+  * added 1.8.3
+  * removed old versions
+
 0.0.4 / 2012-10-05 
 ==================
 
