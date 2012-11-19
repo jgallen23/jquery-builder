@@ -1,24 +1,30 @@
 #jQuery Builder
 
-jQuery Builder lets you easily build a version a custom version of jQuery without downloading the source, grabbing the submodules, installing grunt and building yourself.
+jQuery Builder lets you easily build a version a custom version of jQuery 1.8.3 without downloading the source, grabbing the submodules, installing grunt and building yourself.
 
 ##Install
 
-	npm install jquery-builder
+```
+npm install jquery-builder
+```
 
 ##Usage
 
-	jQuery Builder 0.0.3
-	Usage: node ./bin/builder.js
+```
+jQuery Builder 0.1.0
+Usage: node ./bin/builder.js
 
-	Options:
-		-e, --exclude  Modules to exclude [module,module]              [string]
-		-m, --minify   Minify output                                   [boolean]
-		-l, --ls       List available modules                          [boolean]
+Options:
+	-e, --exclude  Modules to exclude [module,module]              [string]
+	-m, --minify   Minify output                                   [boolean]
+	-l, --ls       List available modules                          [boolean]
+```
 
 ##Example
 
-	jquery-builder --exclude ajax,css -m > jquery.min.js
+```
+jquery-builder --exclude ajax,css -m > jquery.min.js
+```
 
 ##Available Modules
 
