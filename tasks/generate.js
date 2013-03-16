@@ -26,7 +26,6 @@ var generate = function(version, callback) {
 
     async.mapSeries(combinations, function(combination, callback) {
 
-      console.log('\tBuilding ' + combination);
       var outfile = path.join(outputDir, filename(combination, false));
       var outfileMin = path.join(outputDir, filename(combination, true));
 
@@ -35,6 +34,7 @@ var generate = function(version, callback) {
         console.log('');
         callback();
       } else {
+        console.log('\tBuilding ' + combination);
 
         gruntBuild(jqueryPath, combination, function(err, js, jsmin) {
           if (err) {
@@ -61,6 +61,9 @@ var generate = function(version, callback) {
 grunt.registerTask('generate', function() {
   this.async();
   async.mapSeries(data.versions, generate, function(err, results) {
+    if (err) {
+      grunt.log.error(err);
+    }
   });
 });
 
