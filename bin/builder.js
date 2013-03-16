@@ -2,6 +2,7 @@
 
 var fs = require('fs');
 var version = JSON.parse(fs.readFileSync(__dirname + '/../package.json', 'utf8')).version
+var data = require('../data');
 
 var opt = require('optimist')
     .usage('jQuery Builder '+ version +'\nUsage: $0')
@@ -20,12 +21,16 @@ var opt = require('optimist')
       describe: 'List available modules',
       type: 'boolean'
     })
-    //.options('v', {
-      //alias: 'version',
-      //describe: 'Version of jQuery to use (1.8.0, 1.8.1, 1.8.2)',
-      //type: 'string',
-      //default: '1.8.2'
-    //})
+    .options('v', {
+      alias: 'version',
+      describe: 'Version of jQuery',
+      type: 'string',
+      default: '1.9.1'
+    })
+    .options('s', {
+      alias: 'versions',
+      describe: 'List available versions'
+    })
     .options('h', {
       alias: 'help',
       descripe: 'Show help info'
@@ -38,7 +43,7 @@ if (argv.help) {
 }
 
 if (argv.ls) {
-  var comp = require('../data').modules;
+  var comp = data.modules;
   console.log('Modules:');
   comp.forEach(function(c) {
     console.log(c);
@@ -46,10 +51,13 @@ if (argv.ls) {
   return;
 }
 
+if (argv.versions) {
+  console.log('Versions:');
+  data.versions.forEach(function(v) {
+    console.log(v);
+  });
+  return;
+}
+
 var exclude = (argv.exclude) ? argv.exclude.split(',') : undefined;
 
-var builder = require('../lib/builder');
-
-builder(exclude, '1.8.3', argv.minify, function(err, source) {
-  process.stdout.write(source);
-});
