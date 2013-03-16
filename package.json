@@ -10,7 +10,8 @@
   "dependencies": {
     "optimist": "~0.3.5",
     "combinations": "0.1.0",
-    "async": "~0.2.4"
+    "async": "~0.2.4",
+    "request": "~2.16.2"
   },
   "devDependencies": {
     "mocha": "~1.8.1",

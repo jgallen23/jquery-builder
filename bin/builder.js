@@ -3,6 +3,8 @@
 var fs = require('fs');
 var version = JSON.parse(fs.readFileSync(__dirname + '/../package.json', 'utf8')).version
 var data = require('../data');
+var request = require('request');
+var filename = require('../lib/filename');
 
 var opt = require('optimist')
     .usage('jQuery Builder '+ version +'\nUsage: $0')
@@ -60,4 +62,13 @@ if (argv.versions) {
 }
 
 var exclude = (argv.exclude) ? argv.exclude.split(',') : undefined;
+
+var file = filename(exclude, argv.minify);
+var url = 'https://raw.github.com/jgallen23/jquery-builder/gh-pages/dist/'+argv.version+'/'+file;
+request.get(url, function(err, response, body) {
+  if (err) {
+    throw err;
+  }
+  process.stdout.write(body);
+});
 
