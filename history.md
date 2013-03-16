@@ -1,4 +1,23 @@
 
+0.2.0 / 2013-03-15 
+==================
+
+  * changed bin to grab from github
+  * updated jquery submodule
+  * list available versions
+  * remove node_modules directory when checking out
+  * console.log errors
+  * added 1.9.1
+  * updated deps
+  * [refactor] removed bin/generate for grunt task
+  * [grunt] added simple-mocha
+  * [refactor] split up into separate files
+  * [git] added dist to ignore
+  * removed dist
+  * [test] better error message
+  * updated readme
+  * updated readme
+
 0.1.0 / 2012-11-19 
 ==================
 
