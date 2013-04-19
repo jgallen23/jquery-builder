@@ -45,5 +45,10 @@ suite('filename', function() {
     assert.equal(file, 'jquery.js');
   });
 
+  test('remove /', function() {
+    var file = filename(['ajax/xhr']);
+    assert.equal(file, 'jquery-ajaxxhr.js');
+  });
+
 });
 
