@@ -17,7 +17,7 @@ module.exports = function(grunt) {
           ui: 'tdd',
           reporter: 'list',
           growl: true,
-          timeout: 6000
+          timeout: 20000
         }
       }
     }
