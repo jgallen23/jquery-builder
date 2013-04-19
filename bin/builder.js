@@ -45,9 +45,9 @@ if (argv.help) {
 }
 
 if (argv.ls) {
-  var comp = data.modules;
-  console.log('Modules:');
-  comp.forEach(function(c) {
+  var versions = data.versions;
+  console.log('Modules available for jQuery v'+argv.version);
+  versions[argv.version].forEach(function(c) {
     console.log(c);
   });
   return;
