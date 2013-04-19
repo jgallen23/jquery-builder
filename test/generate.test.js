@@ -10,19 +10,17 @@ var data = require('../data.json');
 suite('generate', function() {
   test('make sure all files have been generated', function() {
 
-    var combos = combinations();
-    var versions = data.versions;
+    var versions = combinations();
 
-
-    versions.forEach(function(version) { 
-
-      combos.forEach(function(combo) {
+    for (var version in versions) {
+      for (var i = 0, c = versions[version].length; i < c; i++) {
+        var combo = versions[version][i];
         var f1 = filename(combo, false);
         assert.equal(exists(path.join(__dirname, '../dist/'+version+'/'+f1)), true, version+'/'+f1);
         var f2 = filename(combo, true);
         assert.equal(exists(path.join(__dirname, '../dist/'+version+'/'+f2)), true, version+'/'+f2);
-      });
-    });
+      }
+    }
 
   });
 });

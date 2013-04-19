@@ -1,19 +1,57 @@
 {
-  "modules": [
-    "ajax",
-    "css",
-    "deprecated",
-    "dimensions",
-    "effects",
-    "offset"
-  ],
-  "versions": [
-    "2.0.0b1",
-    "1.9.1",
-    "1.9.0",
-    "1.8.3",
-    "1.8.2",
-    "1.8.1",
-    "1.8.0"
-  ]
+  "versions": {
+    "2.0.0b1": [
+      "ajax",
+      "css",
+      "dimensions",
+      "effects",
+      "offset"
+    ],
+    "1.9.1": [
+      "ajax",
+      "css",
+      "dimensions",
+      "effects",
+      "offset"
+    ],
+    "1.9.0": [
+      "ajax",
+      "css",
+      "dimensions",
+      "effects",
+      "offset"
+    ],
+    "1.8.3": [
+      "ajax",
+      "css",
+      "deprecated",
+      "dimensions",
+      "effects",
+      "offset"
+    ],
+    "1.8.2": [
+      "ajax",
+      "css",
+      "deprecated",
+      "dimensions",
+      "effects",
+      "offset"
+    ],
+    "1.8.1": [
+      "ajax",
+      "css",
+      "deprecated",
+      "dimensions",
+      "effects",
+      "offset"
+    ],
+    "1.8.0": [
+      "ajax",
+      "css",
+      "deprecated",
+      "dimensions",
+      "effects",
+      "offset"
+    ]
+  }
 }
