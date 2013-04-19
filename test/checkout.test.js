@@ -8,7 +8,7 @@ suite('checkout', function() {
 
   test('checkout version', function(done) {
 
-    checkout(jqueryPath, '1.8.3', function(err) {
+    checkout(jqueryPath, '1.9.1', function(err) {
       assert.ok(!err);
       //TODO some way to verify on current branch
       done();
