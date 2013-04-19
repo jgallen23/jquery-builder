@@ -4,7 +4,10 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     watch: {
-      files: '<%= jshint.all %>',
+      files: [
+        '<%= jshint.all %>',
+        'data.json'
+      ],
       tasks: 'default'
     },
     jshint: {
@@ -16,8 +19,9 @@ module.exports = function(grunt) {
         options: {
           ui: 'tdd',
           reporter: 'list',
-          growl: true,
-          timeout: 20000
+          //grep: 'generate',
+          timeout: 20000,
+          growl: true
         }
       }
     }
@@ -32,5 +36,6 @@ module.exports = function(grunt) {
   // Default task.
   grunt.registerTask('default', ['jshint', 'simplemocha']);
   grunt.registerTask('test', ['jshint', 'simplemocha']);
+  grunt.registerTask('dev', ['default', 'watch']);
 
 };
