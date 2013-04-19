@@ -8,14 +8,18 @@ suite('grunt-build', function() {
 
   test('build with no excludes', function(done) {
     build(jqueryPath, null, function(err, js, jsmin) {
-      console.log(arguments);
+      assert.equal(err, null);
+      assert.equal(typeof js, 'string');
+      assert.equal(typeof jsmin, 'string');
       done();
     });
   });
 
   test('build with excludes', function(done) {
     build(jqueryPath, ['css', 'ajax'], function(err, js, jsmin) {
-      console.log(arguments);
+      assert.equal(err, null);
+      assert.equal(typeof js, 'string');
+      assert.equal(typeof jsmin, 'string');
       done();
     });
     
