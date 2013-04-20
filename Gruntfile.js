@@ -19,7 +19,7 @@ module.exports = function(grunt) {
         options: {
           ui: 'tdd',
           reporter: 'list',
-          //grep: 'generate',
+          //grep: 'filename',
           timeout: 20000,
           growl: true
         }
