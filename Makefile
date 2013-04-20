@@ -1,6 +1,7 @@
 build:
-	git checkout master data.json
-	git checkout master lib/filename.js
+	git fetch
+	git checkout origin/master data.json
+	git checkout origin/master lib/filename.js
 
 bootstrap:
 	./node_modules/.bin/boots --all -o bootstrap

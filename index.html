@@ -67,19 +67,7 @@
           <p class="lead">Choose which modules you'd like to include in your custom build:</p>
           <form>
             <div class="row">
-              <div class="span4">
-                <legend>
-                  <div class="toggle">
-                    <button data-action="all" class="btn btn-mini">All</button>
-                    <button data-action="none" class="btn btn-mini">None</button>
-                  </div>
-                  Modules
-                </legend>
-                <div class="control-group">
-                  <ul data-role="modules"></ul>
-                </div>
-              </div>
-              <div class="span4">
+              <div class="span3">
                 <legend>Options</legend>
                 <div class="controls">
                   <label class="select">
@@ -90,6 +78,18 @@
                     Minify
                     <input type="checkbox" id="minify"/>
                   </label>
+                </div>
+              </div>
+              <div class="span5">
+                <legend>
+                  <div class="toggle">
+                    <button data-action="all" class="btn btn-mini">All</button>
+                    <button data-action="none" class="btn btn-mini">None</button>
+                  </div>
+                  Modules
+                </legend>
+                <div class="control-group">
+                  <ul data-role="modules"></ul>
                 </div>
               </div>
             </div>
@@ -137,16 +137,33 @@
         <p>Built by: <a href="http://github.com/jgallen23">Greg Allen</a> (<a href="http://twitter.com/jgaui">@jgaui</a>)</p>
       </div>
     </div>
-    <script src="dist/1.8.2/jquery-css-deprecated-dimensions-effects-offset.min.js"></script>
+    <script src="lib/jquery-css-dimensions-effects-offset.min.js"></script>
     <script src="lib/filename.js"></script>
     <script>
       var currentFile = '';
+      var versions;
 
       $.get('data.json', function(data) {
+        versions = data.versions;
+
+        //versions
+        el = $('#version');
+        html = [];
+        for (var version in versions) {
+          html.push('<option value="'+version+'">'+version+'</option>');
+        }
+        el.html(html.join(''));
+        el.on('change', updateModules);
+        updateModules();
+
+      }, 'json');
+
+      var updateModules = function() {
+
+        var modules = versions[$('#version').val()];
         //modules
         var el = $('[data-role=modules]');
         var html = [];
-        var modules = data.modules;
         for (var i = 0, c = modules.length; i < c; i++) {
           html.push('<li><label class="checkbox"><input type="checkbox" value="'+modules[i]+'" checked>' + modules[i] + '</label></li>');
         }
@@ -154,21 +171,11 @@
         $('[value=deprecated]').parent().append('<span>&nbsp;($.uaMatch, $.browser, $.sub)</span>');
         $('form [type=checkbox]').on('change', update);
 
-        //versions
-        el = $('#version');
-        html = [];
-        var versions = data.versions;
-        for (var i = 0, c = versions.length; i < c; i++) {
-          html.push('<option value="'+versions[i]+'">'+versions[i]+'</option>');
-        }
-        el.html(html.join(''));
-        el.on('change', update);
-
         update();
-      }, 'json');
+      };
 
       var toggleAll = function(e) {
-        $('[data-role=modules] [type=checkbox]').attr('checked', 'checked');
+        $('[data-role=modules] [type=checkbox]').prop('checked', true);
         update();
         e.preventDefault();
       };
@@ -185,13 +192,13 @@
           exclude.push($(el).val());
         });
 
-        var minify = ($('#minify').attr('checked') == 'checked');
-        
+        var minify = ($('#minify').prop('checked') == true);
+
         var version = $('#version').val();
 
         //TODO: save exclude, minify
         currentFile = version + '/' + filename(exclude, minify);
-        $('[data-role=curl]').html('curl '+window.location.href+'dist/'+currentFile+' > jquery.js');
+        $('[data-role=curl]').html('curl https://raw.github.com/jgallen23/jquery-builder/0.3.0/dist/'+currentFile+' > jquery.js');
       };
 
       var submit = function(e) {
@@ -199,7 +206,7 @@
           update();
         }
         _gaq.push(['_trackEvent', 'Download', 'jQuery', currentFile]);
-        window.open('dist/'+currentFile);
+        window.open('https://raw.github.com/jgallen23/jquery-builder/0.3.0/dist/'+currentFile);
         e.preventDefault();
       };
       $('form').on('submit', submit);
