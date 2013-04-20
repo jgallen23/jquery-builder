@@ -1,4 +1,27 @@
 
+0.3.0 / 2013-04-19 
+==================
+
+  * removed 2.0.0b1
+  * added 2.0.0 files
+  * run grunt when doing a checkout
+  * removed ajax submodules (for now)
+  * updated generate for new module setup
+  * clean / from filenames
+  * updated bin to point to tagged dist folder
+  * added jquery to npmignore
+  * updated bin to show modules based on version
+  * updated to allow for each version to define their own modules
+  * added dev task and added data.json to watch
+  * tweaked cmd run for grunt-build
+  * changed test checkout to 1.9.1
+  * assertions for grunt-build
+  * updated timeout for mocha
+  * added .npmignore
+  * moved dist files back to main repo
+  * updated deps
+  * updated readme
+
 0.2.0 / 2013-03-15 
 ==================
 
