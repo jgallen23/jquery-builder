@@ -24,7 +24,7 @@ var generate = function(version, callback) {
       fs.mkdirSync(outputDir);
     }
 
-    async.mapSeries(combinations, function(combination, callback) {
+    async.mapSeries(combinations[version], function(combination, callback) {
 
       var outfile = path.join(outputDir, filename(combination, false));
       var outfileMin = path.join(outputDir, filename(combination, true));
@@ -60,7 +60,8 @@ var generate = function(version, callback) {
 
 grunt.registerTask('generate', function() {
   this.async();
-  async.mapSeries(data.versions, generate, function(err, results) {
+  var versions = Object.keys(data.versions);
+  async.mapSeries(versions, generate, function(err, results) {
     if (err) {
       grunt.log.error(err);
     }
