@@ -3,6 +3,7 @@
   <head>
     <title>jQuery Builder</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/hint.min.css"/>
     <style>
       h2, h3, h4 {
         font-weight: normal;
@@ -37,6 +38,12 @@
       }
       .footer ul li {
         display: inline-block;
+      }
+      .hint:after,[data-hint]:after{
+        min-width: 300px;
+        white-space: normal;
+        line-height: 1.3em;
+        font-size: 85%;
       }
     </style>
     <script type="text/javascript">
@@ -141,10 +148,10 @@
     <script src="lib/filename.js"></script>
     <script>
       var currentFile = '';
-      var versions;
-
-      $.get('data.json', function(data) {
+      var versions, descriptions;
+      $.get('data.json', function(data) {  
         versions = data.versions;
+        descriptions = data.descriptions;
 
         //versions
         el = $('#version');
@@ -165,12 +172,16 @@
         var el = $('[data-role=modules]');
         var html = [];
         for (var i = 0, c = modules.length; i < c; i++) {
-          html.push('<li><label class="checkbox"><input type="checkbox" value="'+modules[i]+'" checked>' + modules[i] + '</label></li>');
+          var description = descriptions[modules[i]]
+            , hint_attrs = '';
+
+          if (description)
+            hint_attrs = 'class="hint--bottom hint--rounded" data-hint="' + description + '"';
+          html.push('<li><span ' + hint_attrs + '><label class="chechbox"><input type="checkbox" value="'+modules[i]+'" checked> ' + modules[i] + ' </label></span></li>');
         }
         el.html(html.join(''));
-        $('[value=deprecated]').parent().append('<span>&nbsp;($.uaMatch, $.browser, $.sub)</span>');
+        // $('[value=deprecated]').parent().append('<span>&nbsp;($.uaMatch, $.browser, $.sub)</span>');
         $('form [type=checkbox]').on('change', update);
-
         update();
       };
 

@@ -57,5 +57,16 @@
       "effects",
       "offset"
     ]
+  },
+  "descriptions": {
+    "ajax": "All AJAX functionality: $.ajax(), $.get(), $.post(), $.ajaxSetup(), .load(), transports, and ajax event shorthands such as .ajaxStart()",
+    "css": "The .css() method plus non-animated .show(), .hide() and .toggle()",
+    "deprecated": "Methods documented as deprecated but not yet removed; currently only .andSelf()",
+    "dimensions": "The .width() and .height() methods, including inner- and outer- variations",
+    "effects": "The .animate() method and its shorthands such as .slideUp() or .hide('slow')",
+    "event-alias": "All event attaching/triggering shorthands like .click() or .mouseover()",
+    "offset": "The .offset(), .position(), .offsetParent(), .scrollLeft(), and .scrollTop() methods",
+    "wrap": "The .wrap(), .wrapAll(), .wrapInner(), and .unwrap() methods",
+    "sizzle": "The Sizzle selector engine. When this module is excluded, it is replaced by a rudimentary selector engine based on the browser's querySelectorAll method that does not support jQuery selector extensions or enhanced semantics. See the selector-native.js file for details"
   }
 }
