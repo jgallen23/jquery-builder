@@ -30,9 +30,9 @@ jquery-builder --exclude ajax,css -m > jquery.min.js
 
 ##Available Modules
 
-- ajax
-- deprecated
-- css
-- dimensions
-- effects
-- offset
+- **ajax**: All AJAX functionality: `$.ajax()`, `$.get()`, `$.post()`, `$.ajaxSetup()`, `.load()`, transports, and ajax event shorthands such as `.ajaxStart()`.
+- **deprecated**: Methods documented as deprecated but not yet removed; currently only `.andSelf()`.
+- **css**: The `.css()` method plus non-animated `.show()`, `.hide()` and `.toggle()`.
+- **dimensions**: The `.width()` and `.height()` methods, including `inner-` and `outer-` variations.
+- **effects**: The `.animate()` method and its shorthands such as `.slideUp()` or `.hide("slow")`. 
+- **offset**: The `.offset()`, `.position()`, `.offsetParent()`, `.scrollLeft()`, and `.scrollTop()` methods.
