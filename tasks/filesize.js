@@ -8,11 +8,11 @@ var async = require('async');
 var baseDir = path.join(__dirname, '../dist');
 
 var getFileSize = function(file, callback) {
-  bytesize.fileSize(file, false, function(err, size) {
+  bytesize.fileSize(file, true, function(err, size) {
     if (err) {
       return callback(err);
     }
-    bytesize.gzipSize(file, false, function(err, gzipsize) {
+    bytesize.gzipSize(file, true, function(err, gzipsize) {
       callback(err, {
         file: path.basename(file),
         normal: size,
