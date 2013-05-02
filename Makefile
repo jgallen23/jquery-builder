@@ -1,5 +1,6 @@
 build:
 	git fetch
+	git checkout origin/master filesizes.json
 	git checkout origin/master data.json
 	git checkout origin/master lib/filename.js
 

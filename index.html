@@ -42,6 +42,9 @@
       .footer ul li {
         display: inline-block;
       }
+      legend .size {
+        font-size: 14px;
+      }
     </style>
     <script type="text/javascript">
 
@@ -107,7 +110,12 @@
                 </div>
               </div>
             </div>
-            <legend>Build</legend>
+            <legend>
+              <div class="size pull-right">
+                Filesize: <strong class="filesize"></strong> / Gzip: <strong class="gzipsize"></strong>
+              </div>
+              Build
+            </legend>
             <div class="row build">
               <div class="span1">
                 <button class="btn btn-large btn-primary">Build</button>
@@ -156,6 +164,7 @@
     <script>
       var currentFile = '';
       var versions;
+      var filesizes = false;
 
       $.get('data.json', function(data) {
         versions = data.versions;
@@ -169,6 +178,11 @@
         el.html(html.join(''));
         el.on('change', updateModules);
         updateModules();
+
+        $.get('filesizes.json', function(data) {
+          filesizes = data;
+          update();
+        }, 'json');
 
       }, 'json');
 
@@ -211,7 +225,13 @@
         var version = $('#version').val();
 
         //TODO: save exclude, minify
-        currentFile = version + '/' + filename(exclude, minify);
+        var name = filename(exclude, minify);
+        currentFile = version + '/' + name;
+        if (filesizes) {
+          var filesize = filesizes[version][name];
+          $('.filesize').text(filesize.normal);
+          $('.gzipsize').text(filesize.gzip);
+        }
         $('[data-role=curl]').html('curl https://raw.github.com/jgallen23/jquery-builder/0.3.0/dist/'+currentFile+' > jquery.js');
       };
 
