@@ -59,12 +59,13 @@ var generate = function(version, callback) {
 
 
 grunt.registerTask('generate', function() {
-  this.async();
+  var done = this.async();
   var versions = Object.keys(data.versions);
   async.mapSeries(versions, generate, function(err, results) {
     if (err) {
       grunt.log.error(err);
     }
+    done();
   });
 });
 
