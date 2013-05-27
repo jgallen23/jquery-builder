@@ -1,4 +1,17 @@
 
+0.4.0 / 2013-05-26 
+==================
+
+  * fixed bin list versions
+  * added 2.0.1 and 1.10.0
+  * cleaned up output on generate
+  * added bytesize dep, pretty filesizes
+  * Merge branch 'master' of github.com:jgallen23/jquery-builder
+  * call done() after generate done
+  * added filesize task to get filesizes for dist files
+  * Merge pull request #8 from martino/master
+  * Added some documentation for submodule
+
 0.3.0 / 2013-04-19 
 ==================
 
