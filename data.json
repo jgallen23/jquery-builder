@@ -1,11 +1,25 @@
 {
   "versions": {
-    "1.9.1": [
+    "1.10.0": [
       "ajax",
       "css",
+      "deprecated",
       "dimensions",
       "effects",
-      "offset"
+      "event-alias",
+      "offset",
+      "wrap"
+    ],
+    "2.0.1": [
+      "ajax",
+      "css",
+      "deprecated",
+      "dimensions",
+      "effects",
+      "event-alias",
+      "offset",
+      "wrap",
+      "sizzle"
     ],
     "2.0.0": [
       "ajax",
@@ -17,6 +31,13 @@
       "offset",
       "wrap",
       "sizzle"
+    ],
+    "1.9.1": [
+      "ajax",
+      "css",
+      "dimensions",
+      "effects",
+      "offset"
     ],
     "1.9.0": [
       "ajax",
