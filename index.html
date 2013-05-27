@@ -232,7 +232,7 @@
           $('.filesize').text(filesize.normal);
           $('.gzipsize').text(filesize.gzip);
         }
-        $('[data-role=curl]').html('curl https://raw.github.com/jgallen23/jquery-builder/0.3.0/dist/'+currentFile+' > jquery.js');
+        $('[data-role=curl]').html('curl https://raw.github.com/jgallen23/jquery-builder/0.4.0/dist/'+currentFile+' > jquery.js');
       };
 
       var submit = function(e) {
@@ -240,7 +240,7 @@
           update();
         }
         _gaq.push(['_trackEvent', 'Download', 'jQuery', currentFile]);
-        window.open('https://raw.github.com/jgallen23/jquery-builder/0.3.0/dist/'+currentFile);
+        window.open('https://raw.github.com/jgallen23/jquery-builder/0.4.0/dist/'+currentFile);
         e.preventDefault();
       };
       $('form').on('submit', submit);
