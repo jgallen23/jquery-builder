@@ -24,17 +24,18 @@ var generate = function(version, callback) {
       fs.mkdirSync(outputDir);
     }
 
+    var i = 1;
+    var length = combinations[version].length;
     async.mapSeries(combinations[version], function(combination, callback) {
 
       var outfile = path.join(outputDir, filename(combination, false));
       var outfileMin = path.join(outputDir, filename(combination, true));
 
       if (exists(outfile) && exists(outfileMin)) {
-        console.log('\tSkipping '+combination);
-        console.log('');
+        console.log('Skipping ['+version+'] ('+i+'/'+length+') '+combination);
+        i++;
         callback();
       } else {
-        console.log('\tBuilding ' + combination);
 
         gruntBuild(jqueryPath, combination, function(err, js, jsmin) {
           if (err) {
@@ -42,8 +43,8 @@ var generate = function(version, callback) {
           }
           fs.renameSync(js, outfile);
           fs.renameSync(jsmin, outfileMin);
-          console.log('\tGenerated ' + combination);
-          console.log('');
+          console.log('Generated ['+version+'] ('+i+'/'+length+') ' + combination);
+          i++;
           callback();
 
         });
