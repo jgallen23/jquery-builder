@@ -27,7 +27,7 @@ var opt = require('optimist')
       alias: 'version',
       describe: 'Version of jQuery',
       type: 'string',
-      default: '1.9.1'
+      default: '1.10.0'
     })
     .options('s', {
       alias: 'versions',
@@ -55,9 +55,9 @@ if (argv.ls) {
 
 if (argv.versions) {
   console.log('Versions:');
-  data.versions.forEach(function(v) {
-    console.log(v);
-  });
+  for (var version in data.versions) {
+    console.log(version);
+  }
   return;
 }
 
