@@ -1,4 +1,11 @@
 
+0.4.1 / 2013-06-03 
+==================
+
+  * new default version
+  * added generate doc for instructions on how generate new jquery files
+  * builds for 1.10.1 and 2.0.2
+
 0.4.0 / 2013-05-26 
 ==================
 
