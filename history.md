@@ -1,4 +1,10 @@
 
+0.5.1 / 2013-10-24 
+==================
+
+  * Change URL to rawgithub for the pull
+  * updated filesizes
+
 0.5.0 / 2013-07-07 
 ==================
 
