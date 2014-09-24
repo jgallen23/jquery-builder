@@ -27,7 +27,7 @@ var opt = require('optimist')
       alias: 'version',
       describe: 'Version of jQuery',
       type: 'string',
-      default: '1.10.2'
+      default: '1.11.0'
     })
     .options('s', {
       alias: 'versions',
