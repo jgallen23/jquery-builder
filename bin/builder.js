@@ -64,7 +64,7 @@ if (argv.versions) {
 var exclude = (argv.exclude) ? argv.exclude.split(',') : undefined;
 
 var file = filename(exclude, argv.minify);
-var url = 'https://rawgithub.com/jgallen23/jquery-builder/'+version+'/dist/'+argv.version+'/'+file;
+var url = 'https://raw.githubusercontent.com/jgallen23/jquery-builder/'+version+'/dist/'+argv.version+'/'+file;
 request.get(url, function(err, response, body) {
   if (err) {
     throw err;
