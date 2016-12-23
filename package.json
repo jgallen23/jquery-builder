@@ -8,18 +8,18 @@
     "url": "https://github.com/jgallen23/jquery-builder.git"
   },
   "dependencies": {
-    "optimist": "~0.3.5",
-    "combinations": "0.1.0",
-    "async": "~0.2.4",
-    "request": "~2.16.2",
+    "optimist": "~0.6.1",
+    "combinations": "0.1.1",
+    "async": "~2.1.4",
+    "request": "~2.79.0",
     "bytesize": "~0.2.0"
   },
   "devDependencies": {
-    "mocha": "~1.9.0",
-    "grunt": "~0.4.0",
+    "mocha": "~3.2.0",
+    "grunt": "~1.0.1",
     "grunt-simple-mocha": "~0.4.0",
-    "grunt-contrib-jshint": "~0.4.3",
-    "grunt-contrib-watch": "~0.3.1"
+    "grunt-contrib-jshint": "~1.1.0",
+    "grunt-contrib-watch": "~1.0.0"
   },
   "main": "./lib/builder",
   "scripts": {
